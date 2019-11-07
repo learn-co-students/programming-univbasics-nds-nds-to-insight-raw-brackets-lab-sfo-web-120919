@@ -1,5 +1,6 @@
 $LOAD_PATH.unshift(File.dirname(__FILE__))
 require 'directors_database'
+require 'pp'
 
 def directors_totals(nds)
   # Remember, it's always OK to pretty print what you get *in* to make sure
@@ -18,5 +19,24 @@ def directors_totals(nds)
   #
   #
   # Be sure to return the result at the end!
-  nil
+  
+  #pp nds
+  
+  nds.each do |director_info|
+  
+    total = 0 # total gross for all movies for director
+  
+    director_info[:movies].each do |movie| 
+      
+    total += movie[:worldwide_gross] # add movie gross to total for director       
+      
+    end
+    
+    result[director_info[:name]] = total
+  
+  
+  end 
+    
+  return result 
+  
 end
